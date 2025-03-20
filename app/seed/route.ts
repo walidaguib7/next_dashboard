@@ -1,4 +1,5 @@
 import bcrypt from "bcryptjs";
+import "dotenv/config";
 
 import postgres from "postgres";
 import { invoices, customers, revenue, users } from "../lib/placeholder-data";
@@ -103,6 +104,7 @@ async function seedRevenue() {
 }
 
 export async function GET() {
+  console.log(process.env.POSTGRES_URL!);
   try {
     const result = await sql.begin((sql) => [
       seedUsers(),
